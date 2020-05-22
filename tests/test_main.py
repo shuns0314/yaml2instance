@@ -19,17 +19,17 @@ def test_load_yaml():
 
 
 def test_single():
-    dummpy_config = {"DummyClass": {"args_1": 1, "args_2": 2}}
-    dummy_list = yaml2instances(dummpy_config, search_modules=[dummy_classes])
+    dummy_config = {"DummyClass": {"args_1": 1, "args_2": 2}}
+    dummy_list = yaml2instances(dummy_config, search_modules=[dummy_classes])
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
 
 
 def test_another_name_multi():
-    dummpy_config = {
+    dummy_config = {
         "DummyClass": {"args_1": 1, "args_2": 2},
         "DummyClass2": {"args_1": 2, "args_2": 2},
     }
-    dummy_list = yaml2instances(dummpy_config, search_modules=[dummy_classes])
+    dummy_list = yaml2instances(dummy_config, search_modules=[dummy_classes])
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
     assert (
         dummy_list[1].minus() == dummy_classes.DummyClass2(args_1=2, args_2=2).minus()
@@ -37,23 +37,23 @@ def test_another_name_multi():
 
 
 def test_same_name_multi():
-    dummpy_config = [
+    dummy_config = [
         {"DummyClass": {"args_1": 1, "args_2": 2}},
         {"DummyClass": {"args_1": 1, "args_2": 2}},
     ]
-    dummy_list = yaml2instances(dummpy_config, search_modules=[dummy_classes])
+    dummy_list = yaml2instances(dummy_config, search_modules=[dummy_classes])
     assert dummy_list != []
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
     assert dummy_list[1].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
 
 
 def test_single_add_kwargs():
-    dummpy_config = {"DummyClass": {"args_2": 2}}
-    dummy_list = yaml2instances(dummpy_config, search_modules=[dummy_classes], args_1=1)
+    dummy_config = {"DummyClass": {"args_2": 2}}
+    dummy_list = yaml2instances(dummy_config, search_modules=[dummy_classes], args_1=1)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
 
 
 def test_single_add_kwargs2():
-    dummpy_config = {"DummyClass": {"args_1": 1, "args_2": 2}}
-    dummy_list = yaml2instances(dummpy_config, search_modules=[dummy_classes], args_1=2)
+    dummy_config = {"DummyClass": {"args_1": 1, "args_2": 2}}
+    dummy_list = yaml2instances(dummy_config, search_modules=[dummy_classes], args_1=2)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
