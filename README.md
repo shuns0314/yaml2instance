@@ -27,7 +27,7 @@ example:
 example.py
 ```
 import yaml
-from yaml2instance import yaml2instances
+from yaml2instance.main import yaml2instances
 
 import modules
 
