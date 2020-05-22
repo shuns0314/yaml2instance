@@ -11,6 +11,7 @@ pytest = "^5.4.2"
 black = "^19.10b0"
 mypy = "^0.770"
 flake8 = "^3.8.1"
+pyyaml = "^5.3.1"
 
 [tool.poetry.dev-dependencies]
 
