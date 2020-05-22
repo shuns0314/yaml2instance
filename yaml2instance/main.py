@@ -5,7 +5,7 @@ from typing import Union, List
 def yaml2instances(
     loading_data: Union[dict, List[dict]], search_modules: list, **kwargs
 ) -> list:
-    """Pareser of the loading_data of loading yaml and the output is an instance."""
+    """From the list of modules, find the class written in yaml and instantiate it."""
     instance_list = []
     if isinstance(loading_data, list):
         for conf in loading_data:
