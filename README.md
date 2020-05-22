@@ -1,8 +1,10 @@
 # yaml2instance
+## install
+`pip install yaml2instace`
 
 ## example
 
-`modules.py`
+modules.py
 ```
 class ExampleClass:
     def __init__(self, args: str):
@@ -12,7 +14,7 @@ class ExampleClass:
         print(self.args)
 ```
 
-`example.yaml`
+example.yaml
 ```
 example:
   ExampleClass:
@@ -20,7 +22,7 @@ example:
 ```
 
 
-`example.py`
+example.py
 ```
 import yaml
 from yaml2instance import yaml2instances
@@ -34,7 +36,7 @@ example_class_instance = yaml2instances(example['example'], modules)
 example_class_instance.hoge()
 ```
 
-`output`
+output
 ```
 hoge
 ```
