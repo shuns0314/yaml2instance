@@ -34,7 +34,7 @@ import modules
 with open("example.yaml") as file:
     example = yaml.safe_load(file)
 
-example_class_instance = yaml2instances(example['example'], modules)
+example_class_instance = yaml2instances(example['example'], modules)[0]
 example_class_instance.hoge()
 ```
 
