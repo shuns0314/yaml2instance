@@ -1,6 +1,6 @@
 # yaml2instance
 ## install
-`pip install yaml2instace`
+```pip install yaml2instace```
 
 ## example
 
