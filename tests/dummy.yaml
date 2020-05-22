@@ -1,0 +1,20 @@
+test_normal:
+  DummyClass:
+    args_1: 1
+    args_2: 2
+
+test_double:
+  DummyClass:
+    args_1: 1
+    args_2: 2
+  DummyClass2:
+    args_1: 2
+    args_2: 2
+
+test_list:
+  - DummyClass:
+      args_1: 1
+      args_2: 2
+  - DummyClass:
+      args_1: 1
+      args_2: 2
