@@ -32,7 +32,7 @@ def _loading_data_to_instance(
         modules_dict.update(_modules)
     for _item, _kwargs in loading_data.items():
         base = {}
-        base.update(kwargs)
-        base.update(_kwargs)
-        instance = modules_dict[_item](**(base or {}))
+        base.update(kwargs or {})
+        base.update(_kwargs or {})
+        instance = modules_dict[_item](**base)
         yield instance
