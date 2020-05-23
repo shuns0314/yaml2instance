@@ -1,4 +1,6 @@
 # yaml2instance
+From the list of modules, find the class written in yaml and instantiate it.
+
 ## install
 ```
 pip install yaml2instace
@@ -34,7 +36,7 @@ import modules
 with open("example.yaml") as file:
     example = yaml.safe_load(file)
 
-example_class_instance = yaml2instances(example['example'], modules)[0]
+example_class_instance = yaml2instances(example['example'], [modules])[0]
 example_class_instance.hoge()
 ```
 
