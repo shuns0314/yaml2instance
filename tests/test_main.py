@@ -101,3 +101,12 @@ def test_another_name_multi_kwargs():
     assert (
         dummy_list[1].minus() == dummy_classes2.DummyClass3(args_3=2, args_4=2).minus()
     )
+
+
+def test_non_kwargs():
+    dummy_config = {
+        "DummyClass": None,
+    }
+    module_list = [dummy_classes, dummy_classes2]
+    dummy_list = yaml2instances(dummy_config, search_modules=module_list)
+    assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=100, args_2=100).add()
