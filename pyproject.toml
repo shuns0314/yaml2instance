@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "yaml2instance"
-version = "0.1.0"
+version = "0.1.1"
 description = "Find the class written in yaml and instantiate it."
 authors = ["shuns0314 <shunsuke.naka0314@gmail.com>"]
 license = "MIT"
