@@ -1,5 +1,5 @@
 # yaml2instance
-From the list of modules, find the class written in yaml and instantiate it.
+From the list of modules, find the class or function written in yaml and call(instantiate) it.
 
 ## install
 ```
