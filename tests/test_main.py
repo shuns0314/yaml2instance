@@ -1,6 +1,6 @@
 import yaml
 
-from yaml2instance.main import yaml2instances
+from yaml2instance.main import call_multiple, call_single
 from tests import dummy_classes, dummy_classes2
 
 
@@ -21,7 +21,7 @@ def test_load_yaml():
 def test_single():
     dummy_config = {"DummyClass": {"args_1": 1, "args_2": 2}}
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
 
 
@@ -31,7 +31,7 @@ def test_another_name_multi():
         "DummyClass2": {"args_1": 2, "args_2": 2},
     }
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
     assert (
         dummy_list[1].minus() == dummy_classes2.DummyClass2(args_1=2, args_2=2).minus()
@@ -44,7 +44,7 @@ def test_same_name_multi():
         {"DummyClass": {"args_1": 1, "args_2": 2}},
     ]
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list)
     assert dummy_list != []
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
     assert dummy_list[1].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
@@ -53,14 +53,14 @@ def test_same_name_multi():
 def test_single_add_kwargs():
     dummy_config = {"DummyClass": {"args_2": 2}}
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list, args_1=1)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list, args_1=1)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
 
 
 def test_single_add_kwargs2():
     dummy_config = {"DummyClass": {"args_1": 1, "args_2": 2}}
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list, args_1=2)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list, args_1=2)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
 
 
@@ -70,7 +70,7 @@ def test_another_name_multi_2():
         "DummyClass3": {"args_3": 2, "args_4": 2},
     }
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
     assert (
         dummy_list[1].minus() == dummy_classes2.DummyClass3(args_3=2, args_4=2).minus()
@@ -83,7 +83,7 @@ def test_another_name_multi_3():
         {"DummyClass3": {"args_3": 2, "args_4": 2}},
     ]
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
     assert (
         dummy_list[1].minus() == dummy_classes2.DummyClass3(args_3=2, args_4=2).minus()
@@ -96,7 +96,7 @@ def test_another_name_multi_kwargs():
         "DummyClass3": {"args_3": 2, "args_4": 2},
     }
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list, args_1=1)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list, args_1=1)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
     assert (
         dummy_list[1].minus() == dummy_classes2.DummyClass3(args_3=2, args_4=2).minus()
@@ -108,5 +108,12 @@ def test_non_kwargs():
         "DummyClass": None,
     }
     module_list = [dummy_classes, dummy_classes2]
-    dummy_list = yaml2instances(dummy_config, search_modules=module_list)
+    dummy_list = call_multiple(dummy_config, search_modules=module_list)
     assert dummy_list[0].add() == dummy_classes.DummyClass(args_1=100, args_2=100).add()
+
+
+def test_call_single_1():
+    dummy_config = {"DummyClass": {"args_1": 1, "args_2": 2}}
+    module_list = [dummy_classes, dummy_classes2]
+    dummy_list = call_single(dummy_config, search_modules=module_list, args_1=2)
+    assert dummy_list.add() == dummy_classes.DummyClass(args_1=1, args_2=2).add()
